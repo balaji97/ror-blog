@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   resources :articles do
+      member do
+          put "like", to: "articles#like"
+          put "dislike", to: "articles#dislike"
+      end
       resources :comments
   end
   root 'welcome#index'
