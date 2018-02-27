@@ -13,9 +13,7 @@ class ArticlesController < ApplicationController
         @article.save
 	end
 	def new
-        @articles = nil
-        
-        redirect_to articles_path
+        @article = Article.new
 	end
 	def edit
         @article = Article.find(params[:id])
