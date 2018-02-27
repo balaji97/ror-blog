@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :articles do
       member do
           put "like", to: "articles#like"
+          put "reset", to: "articles#reset"
+          put "indexSorted", to: "articles#indexSorted"
           put "dislike", to: "articles#dislike"
       end
       resources :comments

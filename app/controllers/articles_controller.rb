@@ -3,13 +3,19 @@ class ArticlesController < ApplicationController
 	def index
 		@articles = Article.all
 	end
+    def indexSorted
+		@articles = Article.all
+        @articles.sort! { |a,b| a.like <=> b.like }
+	end
 	def show
 		@article = Article.find(params[:id])
         @article.count += 1
         @article.save
 	end
 	def new
-        @article = Article.new
+        @articles = nil
+        
+        redirect_to articles_path
 	end
 	def edit
         @article = Article.find(params[:id])
@@ -50,6 +56,12 @@ class ArticlesController < ApplicationController
         @article.dislike += 1
         @article.save
         redirect_to @article
+    end
+    def reset
+        @article = Article.find(params[:id])
+        @article.like = 0
+        @article.save
+        redirect_to articles_path
     end
 	private
 		def article_params
