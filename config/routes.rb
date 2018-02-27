@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   resources :articles do
+      resources :likes
       resources :comments
   end
   root 'welcome#index'

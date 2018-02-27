@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     http_basic_authenticate_with name: "admin", password: "admin", except: [:index, :show]
-    helper_method :like, :dislike
+
 	def index
 		@articles = Article.all
 	end
@@ -40,18 +40,7 @@ class ArticlesController < ApplicationController
         
         redirect_to articles_path
 	end
-    def like
-        @article = Article.find(params[:id])
-        @article.like += 1
-        @article.save
-        render 'show'
-    end
-    def dislike
-        @article = Article.find(params[:id])
-        @article.dislike += 1
-        @article.save
-        render 'show'
-    end
+
 	private
 		def article_params
 			params.require(:article).permit(:title, :text)
